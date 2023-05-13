@@ -7,6 +7,7 @@ import (
 	"time"
 )
 
+// 日期时间
 func testTime() {
 	// 1.获取当前时间
 	now := time.Now()
@@ -49,5 +50,5 @@ func testTime() {
 	// 获得unix 时间戳
 	// 获取unixnano 时间戳
 	fmt.Printf("unix 时间戳=%v unixnano时间戳=%v", now.Unix(), now.UnixNano())
-	
+
 }

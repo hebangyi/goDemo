@@ -1,7 +1,10 @@
-package demo
+package demo9
 
 /// 流程控制相关
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
 // TestBranch1 IF 表达式
 func TestBranch1() {
@@ -9,11 +12,6 @@ func TestBranch1() {
 	var b int = 9
 	// IF的条件表达式
 	if a > b {
-		fmt.Println("a 值 大于 b 值!")
-	}
-
-	// golang中支持在if中,直接定义一个变量,比如下面的方式
-	if a = 11; a > b {
 		fmt.Println("a 值 大于 b 值!")
 	}
 }
@@ -38,11 +36,22 @@ func TestBranch3() {
 	}
 }
 
+func TestBranch4() {
+	var b = 10
+	var a int
+	// golang中支持在if中,直接定义一个变量,比如下面的方式
+	if a = 11; a > b {
+		fmt.Println("a 值 大于 b 值!")
+	}
+}
+
 // TestSwitch .
 func TestSwitch() {
 	var param = 1
+	// go 中
 	// 匹配项后面不需要再加break
 	switch param {
+	// switch 可以做多条件的
 	case 1, 2, 3:
 		fmt.Println("1")
 	case 4:
@@ -55,11 +64,11 @@ func TestSwitch() {
 		fmt.Println("没有匹配到数值字符!")
 	}
 
-	// switch 可以做多条件的
 	switch age := 10; {
 	case age == 1:
 		fmt.Println("1")
-		//fallthrough switch 穿透
+		// switch 穿透
+		// fallthrough
 	case age == 2:
 		fmt.Println("2")
 	default:
@@ -81,6 +90,14 @@ func TestSwitch() {
 		fmt.Printf("x 是 bool 或者 string型")
 	}
 
+	var type1 reflect.Type
+	var type2 reflect.Type
+	type1 = reflect.TypeOf(x)
+	fmt.Println(type1)
+
+	if type1 == type2 {
+		fmt.Println(true)
+	}
 }
 
 // TestFor for循环控制

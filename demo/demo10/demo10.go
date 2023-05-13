@@ -1,4 +1,4 @@
-package demo
+package demo10
 
 // 包、函数相关
 import (
@@ -14,6 +14,7 @@ var (
 	}
 )
 
+// 在引用 demo10 package 的时候 会自动调用init 函数
 // init 函数中可以完成函数文件的初始化工作
 func init() {
 	fmt.Println("init()...")
@@ -39,7 +40,7 @@ func TestFunc3() {
 
 // testFunc4在go中定义类型别名
 func testFunc4() {
-	// 给int 类型取别名
+	// 给int 类型取别名 myInt 代表 int 类型
 	type myInt int
 	var a myInt = 123
 	fmt.Println(a)
@@ -71,7 +72,7 @@ func sum2(n1 int, args ...int) (sum int) {
 	return 0
 }
 
-//TestFunc 测试函数调用
+// TestFunc 测试函数调用
 func TestFunc() {
 	TestFunc1(123)
 
@@ -111,7 +112,6 @@ func TestDefer(n1 int, n2 int) {
 	// 3.在defer将语句放入到栈中时,将相关的值拷贝同时入栈
 	defer fmt.Println("defer function 1!")
 	defer fmt.Println("defer function 2!")
-
 	defer func() {
 		fmt.Println("defer 函数调用")
 	}() // 调用匿名函数
@@ -121,7 +121,6 @@ func TestDefer(n1 int, n2 int) {
 // 内建函数
 func testInnerFunc() {
 	// len的使用 数组的长度
-	//
 	// new的使用
 	// num2的值是指针类型的值
 	num2 := new(int) // *int

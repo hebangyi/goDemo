@@ -1,4 +1,4 @@
-package demo
+package demo19
 
 import (
 	"bufio"
@@ -8,21 +8,21 @@ import (
 	"os"
 )
 
-//// 文件操作与文件的读取
+// // 文件操作与文件的读取
 // golang 中 os.File 封装了所有文件相关操作, File是一个结构体
 func testFile() {
 
 	// 打开文件
 	file, err := os.Open("d:/test.txt")
+	// 关闭文件
+	defer file.Close()
 	if err != nil {
 		fmt.Println("open file error = ", err)
+		return
 	}
-
 	// 输出文件
 	fmt.Printf("file=%v", file)
 
-	// 关闭文件
-	defer file.Close()
 }
 
 // 使用reader 带缓冲的方式读取文件
@@ -57,7 +57,6 @@ func testReadFile() {
 	// 因为文件Open和Close被封装到 ReadFile 函数内部
 }
 
-//
 func testOpenFile() {
 	filePath := "d:/abc.txt"
 	// O_RDONLY int = syscall.O_RDONLY // open the file read-only.

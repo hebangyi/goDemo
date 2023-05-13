@@ -40,7 +40,7 @@ type Computer struct {
 }
 
 // 编写一个方法Working 方法,接受一个Usb接口类型变量
-// 只要是实现了 Usb 接口(所谓实现Usb接口,就是值实现了 Usb 接口声明所有方法)
+// 只要是实现了 Usb 接口(所谓实现Usb接口,就是指实现了 Usb 接口声明所有方法)
 func (c Computer) Working(usb Usb) {
 	// 通过usb接口变量来调用Start和Stop方法
 	usb.Start()

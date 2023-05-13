@@ -1,6 +1,6 @@
 // go语言的数组与切片
 
-package demo
+package demo14
 
 import "fmt"
 
@@ -53,17 +53,17 @@ func testArray() {
 // 切片是数组的一个引用,因此切片是引用类型,在进行传递时,遵守引用传递的机制
 // 切片的使用和数组类似,遍历切片、访问切片元素和求切片长度都一样
 // 切片的长度是可以变化的,因此切片是一个动态变化的数组
-func testSlice() {
-	////// 演示切片的基本使用
 
-	////// 在内存上讲,slice由3个部分构成,切片的首地址,切片的长度,切片的空间
-	// 从底层还是说,其实slice就是一个数据结构
-	// type slice struct{
-	// 	ptr *[2] int
-	// 	len int
-	// 	cap int
-	// }
+////// 演示切片的基本使用
 
+////// 在内存上讲,slice由3个部分构成,切片的首地址,切片的长度,切片的空间
+// 从底层还是说,其实slice就是一个数据结构
+// type slice struct{
+// 	ptr *[2] int
+// 	len int
+// 	cap int
+// }
+func TestSlice() {
 	////// 创建切片的几种方式
 	//// 声明/定义一个切片
 	//// 第一种
@@ -75,30 +75,51 @@ func testSlice() {
 	// 数组和切片的关系是,数组声明对应的是初始化,切片是对数组进行引用
 	slice := intArr[1:3]
 	fmt.Println("intArr=", intArr)
+	fmt.Printf("slice=%v", slice)
 	fmt.Println("slice 的元素是 =", slice)
 	fmt.Println("slice 的元素个数是 =", len(slice))
 	// cap是一个内置函数,用于统计切片得容量,即最大可以存放多少个元素
 	fmt.Println("slice 的容量 =", cap(slice))
 
+	// 如果越界方位会触发异常
+	// fmt.Println(intArr[1000])
+}
+
+func TestSlice2() {
+	// 需要注意的是，如果对切片进行追加操作，可能会触发重新分配底层数组的内存空间，导致切片指向新的底层数组，而不再与原始数组共享。
+	// 在这种情况下，原始数组和其他切片的值将不受影响。(其他切片还是引用的原数组)
+
+	// 声明 长度和空间都为10
+	var slice0 []int = make([]int, 10)
+	fmt.Println("slice0 size = ", len(slice0))
+	fmt.Println("slice0 cap =", cap(slice0))
+
 	//// 第二种
 	// 通过make方式创建切片
 	// make默认创建了一个数组,程序员是不可见的,切片在底层进行维护
 	// 使用切片类型,所使用的声明是[],不规定数量
-	var slice1 []int = make([]int, 4, 10) // 使用make换算创建切片,第一个参数是类型,第二个参数是大小,第三个参数是长度
+	var slice1 []int = make([]int, 4, 10) // 使用make换算创建切片,第一个参数是类型,第二个参数是大小(Len),第三个参数是切片的空间长度()
 
 	// 给切片得各个元素赋值
 	slice1[1] = 10
 	slice1[3] = 20
-	fmt.Println(slice)
+	fmt.Println(slice1)
 	fmt.Println("slice1的size=", len(slice1))
 	fmt.Println("slice1的cap=", cap(slice1))
+	// 只能访问Len所在的空间
+	// fmt.Println(slice1[6])
 
+}
+
+func TestSlice3() {
 	//// 第三种
 	// 直接使用数组的方式
+	intArr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	fmt.Println("cap = ", cap(intArr))
 	var slice2 = intArr
 
 	///////////////////////////////////////////////////////////////////////
-	// 切片的使用
+
 	///////////////////////////////////////////////////////////////////////
 
 	// 前片的内置函数
@@ -115,7 +136,7 @@ func testSlice() {
 	slice4 := arr[1:4]
 
 	for i := 0; i < len(slice4); i++ {
-		fmt.Printf("slice4[%v]=%v", i, slice[i])
+		fmt.Printf("slice4[%v]=%v", i, slice4[i])
 	}
 
 	for k, v := range slice4 {
@@ -135,7 +156,7 @@ func testSlice() {
 	// 切片可以动态增长
 	var slice7 []int = []int{100, 200, 300}
 	// 通过append直接给slice7 追加具体元素
-	// 底层是通过值拷贝的形式,创建一个新的数组,并加新的值进行添加
+	// 底层是通过值拷贝的形式,如果超过空间,会创建一个新的数组,并加新的值进行添加
 	slice7 = append(slice7, 400)
 	slice7 = append(slice7, 500, 600, 700)
 
@@ -154,13 +175,45 @@ func testSlice() {
 	str = string(arr1)
 	fmt.Println("str=", str)
 
+}
+
+// 切片的使用
+func TestSliceFunc() {
+	// 声明一个数组 切片
+	arr := []int{1, 2, 3, 4, 5}
+	// 切片长度
+	fmt.Println("slice的size=", len(arr))
+	// 切片容量
+	fmt.Println("slice的cap=", cap(arr))
+	var copy_arr = make([]int, 1)
+	copy(copy_arr, arr)
+	fmt.Println(copy_arr)
+
+	// 切片遍历
+	for k, v := range arr {
+		fmt.Printf("key = %v , val = %v", k, v)
+	}
+
+	// 切片可以继续切片
+	// 切片初始化方法
+	newSlice := arr[0:3]
+	newSlice = arr[0:] // 默认最大长度
+	newSlice = arr[:]
+	newSlice = arr[:3] // 默认最小策划长度
+
+	fmt.Println("newSlice = ", newSlice)
+	// 追加切片
+	fmt.Println("old slice = ", newSlice)
+	newSlice = append(newSlice, 101)
+	fmt.Println("new slice = ", newSlice)
+
 	// 如果字符串包含中文编码,则先将编码转换为rune,再进行修改
 	str2 := "你好!"
 	arr2 := []rune(str2)
+	fmt.Println("len str2=", len(arr2))
 	arr2[0] = '一'
 	str2 = (string)(arr2)
 	fmt.Println("str2=", str2)
-
 }
 
 //// 二维数组介绍,多维数组介绍

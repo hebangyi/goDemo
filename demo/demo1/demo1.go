@@ -1,12 +1,13 @@
-package demo
+package demo1
 
 import (
+	// flag 包的作用是解析命令行参数
 	"flag"
 	"fmt"
 )
 
-/// 方法,打印参数
-func getName() string {
+// / 方法,打印参数
+func GetName() string {
 	return "Heby"
 }
 

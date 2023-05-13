@@ -5,7 +5,6 @@ package main
 /// go get 导入第三方表
 import (
 	"fmt"
-
 	// 还有一个封装redis 具体方法的包
 	"github.com/gomodule/redigo/redis"
 )

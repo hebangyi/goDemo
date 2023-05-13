@@ -1,5 +1,3 @@
-// 字符串常用的系统函数
-
 package demo
 
 import (
@@ -8,14 +6,14 @@ import (
 	"strings"
 )
 
+// 字符串相关
 func testStr1() {
-
 	var str1 string = "hello"
 	// 统计字符串的字节长度, 按字节len(str)
 	//// golang的编码格式为为utf-8 (ascii的字符(字母和数值) 占一个字节,汉字占用3个字节)
 	fmt.Println("str len=", len(str1))
-
-	// 所以在处理含有中文字符的字符串时(占有3个字节的特殊字符),数据类型需转换为切片
+	// rune 本质是int32 , 用来表示unicode 字符
+	// 所以在计算字符串长度时 应该先通过rune函数进行转换
 	str2 := []rune("hello 你好")
 	for i := 0; i < len(str2); i++ {
 		fmt.Printf("")
@@ -55,7 +53,7 @@ func testStr1() {
 	count := strings.Count("abcba", "a")
 	fmt.Printf("count = %v", count)
 
-	// 在比较字符串== 与是区分大小写的 , 判断字符串相同,不区分大小写
+	// 在比较字符串 == 与是区分大小写的 , 判断字符串相同,不区分大小写
 	b = strings.EqualFold("abc", "ABC")
 	fmt.Printf("b = %v", b)
 	fmt.Printf("b = %v", "abc" == "ABC")

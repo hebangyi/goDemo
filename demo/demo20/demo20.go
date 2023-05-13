@@ -1,4 +1,4 @@
-package demo
+package demo20
 
 import (
 	"encoding/json"
@@ -16,7 +16,7 @@ type JsonMonster struct {
 	Skill    string
 }
 
-func testStructToJson() {
+func TestStructToJson() {
 	// 演示
 	monster := JsonMonster{
 		Name: "牛魔王",
@@ -41,7 +41,7 @@ func testStructToJson() {
 
 }
 
-func testMapToJson() {
+func TestMapToJson() {
 	// 定义一个map
 	var a map[string]interface{}
 	// 使用map,需要make
