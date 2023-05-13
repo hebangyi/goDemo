@@ -11,7 +11,7 @@ import "fmt"
 // go中的数组属于值类型,默认情况下是值穿点,因此会进行 值拷贝 ,数组间不会相互影响
 // 如想在其它函数中,去修改原来的数组,可以使用引用传递(指针的方式)
 // 长度是数组类型的一部分
-func testArray() {
+func TestArray() {
 	// 1.定义一个长度为6的数组
 	var hens [6]float64
 	// 2.给数组中的元素赋值
@@ -44,9 +44,10 @@ func testArray() {
 	// 这里的[...]是规定的写法,长度由初始化的值规定
 	var numArray4 = [...]int{8, 9, 10}
 	// 按照下标的方式进行初始化,长度由初始化的值规定
-	var numArray5 = [...]int{1: 800, 0: 900, 2: 999}
+	var numArray5 = [...]int{1: 800, 0: 900, 3: 999}
 
 	fmt.Printf("%v,%v,%v,%v,%v,%v", numArray0, numArray1, numArray2, numArray3, numArray4, numArray5)
+
 }
 
 // 切片相关
@@ -71,6 +72,7 @@ func TestSlice() {
 	// 1. slice 就是切片名
 	// 2. intArr[1:3] 表示 slice 引用到intArr这个数组
 	// 3. 引用intArr数组的起始下标为1 , 最后的下标为3(但是不包含3)
+	// 声明数值是需要写定长度的 声明切片不需要长度
 	intArr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 	// 数组和切片的关系是,数组声明对应的是初始化,切片是对数组进行引用
 	slice := intArr[1:3]
