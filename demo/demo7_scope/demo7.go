@@ -1,6 +1,5 @@
 package demo7
 
-// 面向对象相关
 // 函数作用域
 var age int = 50
 

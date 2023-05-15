@@ -1,6 +1,8 @@
 // 如果要编译生成一个可执行程序文件,就需要将这个包声明为main 即 package main
 package main
 
+import demo20 "example.com/go-demo-1/demo/demo20_json"
+
 func main() {
 
 	// name := demo.GetName()
@@ -37,5 +39,12 @@ func main() {
 	// demo16.TestNewStudent()
 	// demo20.TestStructToJson()
 	// demo14.TestArray()
-
+	// demo28.TestSort2()
+	// demo28.TestSort3()
+	// demo28.TestSort4()
+	// demo23.TestReflectTypeAndVal(Person{Name: "heby"})
+	// demo23.TestReflectTypeAndVal(1)
+	// demo23.TestStruct()
+	// demo23.TestStruct()
+	demo20.TestStructToJson()
 }

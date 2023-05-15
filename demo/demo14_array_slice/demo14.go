@@ -115,7 +115,6 @@ func TestSlice2() {
 
 func TestSlice3() {
 	//// 第三种
-	// 直接使用数组的方式
 	intArr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 	fmt.Println("cap = ", cap(intArr))
 	var slice2 = intArr
@@ -188,6 +187,7 @@ func TestSliceFunc() {
 	// 切片容量
 	fmt.Println("slice的cap=", cap(arr))
 	var copy_arr = make([]int, 1)
+	// 切片复制使用copy函数
 	copy(copy_arr, arr)
 	fmt.Println(copy_arr)
 

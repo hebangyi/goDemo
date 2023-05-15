@@ -191,7 +191,7 @@ var (
 	channel3Exit = make(chan bool, 1)
 )
 
-///// 判断 1-8000是不是素数,使用协程的方式
+// /// 判断 1-8000是不是素数,使用协程的方式
 func putNum(intChan chan int) {
 	for i := 1; i <= 8000; i++ {
 		intChan <- i
@@ -265,4 +265,36 @@ func testPutNum() {
 
 	fmt.Println("main thread exit")
 
+}
+
+func TestSelectCase() {
+	runtime.GOMAXPROCS(1)
+	intChan := make(chan int, 1)
+	stringChan := make(chan string, 1)
+	intChan <- 1
+	stringChan <- "hello"
+	select {
+	case value := <-intChan:
+		fmt.Println(value)
+	case value := <-stringChan:
+		panic(value)
+	}
+
+}
+
+func TestSingalChannel() {
+	ch := make(chan int)
+	go sendOnly(ch, 42)
+	go receiveOnly(ch)
+}
+
+// 发送的单向通道
+func sendOnly(ch chan<- int, value int) {
+	ch <- value
+}
+
+// 接受的单向通道
+func receiveOnly(ch <-chan int) {
+	value := <-ch
+	fmt.Println("Received:", value)
 }
