@@ -1,7 +1,13 @@
 // 如果要编译生成一个可执行程序文件,就需要将这个包声明为main 即 package main
 package main
 
-import demo20 "example.com/go-demo-1/demo/demo20_json"
+import (
+	"fmt"
+	"runtime"
+	"time"
+
+	"example.com/go-demo-1/demo/demo29"
+)
 
 func main() {
 
@@ -46,5 +52,11 @@ func main() {
 	// demo23.TestReflectTypeAndVal(1)
 	// demo23.TestStruct()
 	// demo23.TestStruct()
-	demo20.TestStructToJson()
+	// demo20.TestStructToJson()
+
+	fmt.Println(runtime.NumCPU())
+	demo29.Test2()
+
+	time.Sleep(time.Second * 10)
+
 }
