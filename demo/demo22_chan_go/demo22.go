@@ -1,4 +1,4 @@
-package demo
+package demo22
 
 import (
 	"fmt"
@@ -146,13 +146,16 @@ func testChannel3() {
 	go readData(channel3, channel3Exit)
 
 	for {
+		select {
 		// 该方法将会阻塞,直到取完关闭
-		v, ok := <-channel3Exit
-		if !ok {
-			break
+		case v, ok := <-channel3Exit:
+			if !ok {
+				break
+			}
+			// time.Sleep
+			fmt.Printf("readData 读到数据 = %v \n", v)
 		}
-		// time.Sleep
-		fmt.Printf("readData 读到数据 = %v \n", v)
+
 	}
 	// 结束
 	fmt.Println("Exit!")

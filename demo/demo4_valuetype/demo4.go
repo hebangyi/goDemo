@@ -6,6 +6,16 @@ import (
 )
 
 // 数值类型
+/**
+go 中的引用类型
+interface
+slice
+map
+channel
+function
+pointer
+function
+*/
 func Test5() {
 	// 有符号位的数值类型
 	var a int8

@@ -1,9 +1,12 @@
-package demo
+package demo4
 
-import "fmt"
+import (
+	"fmt"
+	"testing"
+)
 
-/// 接口
-/// 声明一个接口
+// / 接口
+// / 声明一个接口
 type Usb interface {
 	//声明两个没哟实现的方法
 	Start()
@@ -67,6 +70,15 @@ type interfaceB interface {
 	MethodB()
 }
 
+// 泛型约束 (这种叫一般接口 前者是基本接口)
+type InterfaceC interface {
+	// ~ 指定底层类型
+	float32 | float64 | ~int
+}
+
+type Person[T InterfaceC] struct {
+}
+
 // 空接口,可以接受任意类型
 type empty interface {
 }
@@ -80,12 +92,34 @@ func TypeJudge(items ...interface{}) {
 		case int:
 			fmt.Printf("param #%d is a int 值是%v", i, x)
 		}
-
 	}
-
 }
 
-func main1() {
+type Animal interface {
+	Sleep()
+	// Talk()
+}
+
+type Student struct {
+	Name string
+}
+
+func (s *Student) Sleep() {
+	fmt.Println(s.Name + "学生在睡觉")
+	s.Name = "fin heby"
+}
+
+func OnSleep(animal Animal) {
+	animal.Sleep()
+}
+
+func TestExtends(t *testing.T) {
+	stu := Student{Name: "heby"}
+	OnSleep(&stu)
+	fmt.Println(stu.Name)
+}
+
+func TestMethod(t *testing.T) {
 	//测试
 	// 先创建结构体变量
 	computer := Computer{}

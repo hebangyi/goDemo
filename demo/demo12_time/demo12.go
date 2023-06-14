@@ -1,6 +1,6 @@
 /// 日期与时间相关的函数
 
-package demo
+package demo12
 
 import (
 	"fmt"
@@ -8,10 +8,13 @@ import (
 )
 
 // 日期时间
-func testTime() {
+func TestTime() {
 	// 1.获取当前时间
 	now := time.Now()
 	fmt.Printf("now = %v type = %T", now, now)
+	location, _ := time.LoadLocation("Local")
+	now.In(location)
+	fmt.Println(now)
 
 	// 获取now的年月日,时分秒
 	fmt.Printf("年 = %v \n", now.Year())

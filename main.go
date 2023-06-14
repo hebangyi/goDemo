@@ -2,11 +2,8 @@
 package main
 
 import (
-	"fmt"
-	"runtime"
+	demo12 "example.com/go-demo-1/demo/demo12_time"
 	"time"
-
-	"example.com/go-demo-1/demo/demo29"
 )
 
 func main() {
@@ -54,8 +51,10 @@ func main() {
 	// demo23.TestStruct()
 	// demo20.TestStructToJson()
 
-	fmt.Println(runtime.NumCPU())
-	demo29.Test2()
+	// fmt.Println(runtime.NumCPU())
+	// demo29.Test2()
+	// demo31.Test()
+	demo12.TestTime()
 
 	time.Sleep(time.Second * 10)
 
