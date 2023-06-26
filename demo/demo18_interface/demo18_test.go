@@ -2,6 +2,7 @@ package demo4
 
 import (
 	"fmt"
+	"reflect"
 	"testing"
 )
 
@@ -10,6 +11,14 @@ import (
 type Usb interface {
 	//声明两个没哟实现的方法
 	Start()
+	Stop()
+}
+
+type Start interface {
+	Start()
+}
+
+type Stop interface {
 	Stop()
 }
 
@@ -111,6 +120,13 @@ func (s *Student) Sleep() {
 
 func OnSleep(animal Animal) {
 	animal.Sleep()
+}
+
+func TestInterface(t *testing.T) {
+	var use Usb = Phone{}
+	fmt.Println(reflect.TypeOf(use))
+	_, ok := use.(Start)
+	fmt.Println(ok)
 }
 
 func TestExtends(t *testing.T) {

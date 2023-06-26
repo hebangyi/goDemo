@@ -19,4 +19,5 @@ func TestPoint() {
 	// 3.对指针变量中对应的地址赋值,指针赋值的类型必须是对应的类型
 	*ptr = 211
 	// 4. 值类型都有对应的指针类型
+	fmt.Println(fmt.Sprintf("Repeated Set Parent : #{123}"))
 }

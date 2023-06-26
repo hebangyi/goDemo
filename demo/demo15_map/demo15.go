@@ -100,6 +100,27 @@ func IteratorMap() {
 	}
 }
 
+func TestMap() {
+	var map1 = make(map[string]string)
+	TestMap1(map1)
+	fmt.Println(map1)
+}
+
+func TestMap1(m map[string]string) {
+	m["heby3"] = "heby3"
+}
+
+func TestSlice() {
+	var slice = make([]int, 10)
+	TestSlice1(slice)
+	fmt.Println(slice)
+}
+
+func TestSlice1(slice []int) {
+	slice[0] = 1
+	slice[1] = 2
+}
+
 // map 的长度
 func TestMapLen() {
 	map1 := make(map[string]string)
